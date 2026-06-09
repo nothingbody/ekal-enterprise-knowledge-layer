@@ -115,13 +115,6 @@ cd frontend
 npm run build
 ```
 
-### 4. Run Backend Tests
-
-```bash
-cd backend
-pytest
-```
-
 ## Usage
 
 ### First-Time Setup

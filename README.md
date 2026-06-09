@@ -153,27 +153,13 @@ cd admin-frontend
 npm run build
 ```
 
-### 6. 后端测试
-
-```bash
-cd backend
-pytest
-```
-
-如需运行中心服务测试：
-
-```bash
-cd server
-pytest
-```
-
-### 7. 环境变量配置（可选）
+### 6. 环境变量配置（可选）
 
 - **frontend**：复制 `frontend/.env.example` 为 `frontend/.env`，可配置 `VITE_API_TARGET`（默认 `http://localhost:8000`）以指定开发模式下的 API 代理目标
 - **admin-frontend**：复制 `admin-frontend/.env.example` 为 `admin-frontend/.env`，可配置 `VITE_API_TARGET`（默认 `http://localhost:8080`）以连接中心服务器；统一部署时可通过 `VITE_ADMIN_API_BASE=/api/central/v1` 指定管理后台 API 前缀
 - **用户端**（frontend）连接 `backend`；**管理后台**（admin-frontend）连接 `server`，两者使用不同的 token（`token` / `admin_token`）
 
-### 8. 生产环境部署（统一部署）
+### 7. 生产环境部署（统一部署）
 
 适用于通过 Nginx 统一暴露用户端、管理后台与 API 的场景。
 
