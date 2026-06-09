@@ -1,92 +1,71 @@
 # Zhishu RAG Intelligent Knowledge Platform
 
-## Overview
-Zhishu is a RAG-oriented intelligent knowledge platform designed for enterprise knowledge management and question answering. It combines document ingestion, hybrid retrieval, multi-turn dialogue, tool integration, collaboration, and publishing into a unified system.
+Zhishu is an open-source RAG platform for enterprise knowledge management, intelligent question answering, and knowledge service publishing. It combines document ingestion, database synchronization, hybrid retrieval, LLM orchestration, agents, tools, workspaces, channel integrations, and deployment tooling in one repository.
 
-The platform is built to turn scattered documents, databases, and model capabilities into a usable knowledge service layer for search, question answering, SQL querying, agent collaboration, and multi-channel delivery.
+## Highlights
 
-## Core Features
+- Multi-format document parsing for PDF, Word, Excel, PPT, Markdown, HTML, TXT, and images.
+- Hybrid retrieval with dense vectors and BM25.
+- Streaming chat, multi-turn context, query rewriting, reranking, and NL2SQL.
+- Multi-agent collaboration across knowledge bases.
+- MCP and built-in tool integration.
+- Workspace collaboration, app publishing, API sharing, and channel integrations.
+- Separate runtime plane and control plane for local, desktop, and cloud deployments.
 
-### Knowledge Management
-- Multi-format document parsing: PDF, Word, Excel, PPT, Markdown, HTML, TXT, and images
-- Multiple chunking strategies: fixed-size, paragraph, recursive, and heading-based
-- Duplicate detection, chunk editing, vector re-indexing, and knowledge base import/export
-- Database source synchronization into knowledge chunks
+## Architecture
 
-### Retrieval and QA
-- Dense vector retrieval + BM25 hybrid recall
-- Query rewrite, multi-query expansion, and reranking
-- Streaming chat responses
-- Natural language to SQL
-- Multi-turn context management
-- User memory and profile injection
+```mermaid
+flowchart TB
+    User["Business User"] --> Frontend["frontend"]
+    Admin["Administrator"] --> AdminFrontend["admin-frontend"]
+    Desktop["Electron Desktop"] --> Frontend
 
-### Agent and Extensibility
-- MCP tool integration
-- Prompt skills, skill chains, and automations
-- Multi-agent collaboration
-- Browser automation tool
-- Sandboxed code execution
-- Voice input and TTS playback
+    Frontend --> Gateway["Nginx / API Gateway"]
+    AdminFrontend --> Gateway
 
-### Platform Capabilities
-- Workspace collaboration
-- App publishing and sharing
-- Channel integrations: WeCom, DingTalk, Feishu, Telegram, Discord, Slack
-- System diagnostics and health checks
-- Electron desktop packaging
+    Gateway --> Backend["backend Runtime Plane"]
+    Gateway --> Server["server Control Plane"]
 
-## Recent Enhancements
-The current version includes the following major enhancements:
+    Backend --> DB["PostgreSQL / SQLite"]
+    Backend --> Redis["Redis"]
+    Backend --> Vector["ChromaDB / pgvector"]
+    Backend --> Worker["Celery Worker"]
+    Backend --> LLM["LLM / Embedding Provider"]
+    Backend --> Tools["MCP / Built-in Tools"]
+    Backend --> Channels["Messaging Channels"]
 
-1. Multi-agent orchestration  
-   Multiple specialized agents can collaborate across knowledge bases for complex QA.
+    Server --> CentralDB["Central PostgreSQL"]
+    Server --> AdminOps["Identity / Org / Audit / Analytics"]
+    Backend -.auth bridge / usage reporting.-> Server
+```
 
-2. Onboarding wizard and diagnostics  
-   An interactive setup wizard and diagnostics page improve first-time experience and troubleshooting.
+### Runtime and Control Planes
 
-3. Channel ecosystem expansion  
-   Discord and Slack adapters were added, together with stronger channel validation.
-
-4. Voice and tool extensions  
-   Voice input, TTS playback, and browser tooling are now available.
-
-5. Security isolation  
-   Docker-based sandbox execution is supported for high-risk tools.
+| Module | Role | Responsibilities |
+|---|---|---|
+| `backend` | Runtime plane | Knowledge bases, documents, retrieval, chat, agents, tools, automations, channels |
+| `server` | Control plane | Central auth, organizations, users, devices, audit, notifications, analytics, admin APIs |
+| `frontend` | User app | Knowledge workflows, chat, model settings, workspaces, published apps |
+| `admin-frontend` | Admin app | Organization, user, device, analytics, and platform management |
 
 ## Repository Structure
 
 ```text
-backend/    FastAPI backend, services, models, tests
-frontend/   Vue 3 + Element Plus frontend
-desktop/    Electron desktop wrapper
-doc/        Project documents and supporting materials
+backend/          FastAPI runtime backend
+server/           FastAPI central control service
+frontend/         Vue 3 user-facing frontend
+admin-frontend/   Vue 3 administration frontend
+shared/           Shared Python utilities
+shared-frontend/  Shared frontend utilities
+desktop/          Electron desktop wrapper
+deploy/           Production Docker Compose and Nginx configuration
+website/          Static project website
+doc/adr/          Architecture decision records
 ```
 
-## Technology Stack
+## Quick Start
 
-### Backend
-- Python 3.11+
-- FastAPI
-- Async SQLAlchemy
-- PostgreSQL / SQLite
-- ChromaDB
-- Celery + Redis
-
-### Frontend
-- Vue 3
-- TypeScript
-- Vite
-- Element Plus
-- Pinia
-
-### Desktop
-- Electron
-- PyInstaller
-
-## Installation and Startup
-
-### 1. Start the Backend
+### Runtime Backend
 
 ```bash
 cd backend
@@ -94,64 +73,100 @@ pip install -r requirements.txt
 python desktop_main.py
 ```
 
-This starts the backend in desktop mode by default.
+Default endpoint: `http://127.0.0.1:8000`.
 
-### 2. Start the Frontend
+### User Frontend
 
 ```bash
-cd frontend
+cd shared-frontend
+npm install
+npm run build
+
+cd ../frontend
 npm install
 npm run dev
 ```
 
-Default development endpoints:
-- Frontend: `http://127.0.0.1:3000`
-- Backend: `http://127.0.0.1:8000`
+Default endpoint: `http://127.0.0.1:3000`.
 
-### 3. Build the Frontend
+### Control Server
 
 ```bash
-cd frontend
+cd server
+pip install -r requirements.txt
+python run.py
+```
+
+Default endpoint: `http://127.0.0.1:8080`.
+
+### Admin Frontend
+
+```bash
+cd shared-frontend
+npm run build
+
+cd ../admin-frontend
+npm install
+npm run dev
+```
+
+Default endpoint: `http://127.0.0.1:5173`.
+
+## Production Deployment
+
+```bash
+cp .env.example .env
+
+docker compose -f deploy/docker-compose.prod.yml --profile build run --rm frontend-build
+docker compose -f deploy/docker-compose.prod.yml --profile build run --rm admin-build
+docker compose -f deploy/docker-compose.prod.yml --profile build run --rm website-copy
+
+docker compose -f deploy/docker-compose.prod.yml up -d
+```
+
+Default production routes:
+
+| Path | Target |
+|---|---|
+| `/` | Static website |
+| `/app/` | User frontend |
+| `/admin/` | Admin frontend |
+| `/api/v1/` | `backend` |
+| `/api/central/v1/` | `server` |
+
+## Build Verification
+
+```bash
+cd shared-frontend
+npm run build
+
+cd ../frontend
+npm run build
+
+cd ../admin-frontend
 npm run build
 ```
 
-## Usage
+Backend health endpoints:
 
-### First-Time Setup
-1. Log in to the system
-2. Configure an LLM model and an embedding model
-3. Create a knowledge base
-4. Upload documents or sync database sources
-5. Open the chat page and start asking questions
+- `backend`: `/api/v1/health`
+- `server`: `/api/v1/health`
 
-### Multi-Agent Workflow
-1. Create agents in the `Multi-Agent` page
-2. Bind each agent to one or more knowledge bases and an LLM model
-3. Switch chat mode to `Multi-Agent`
-4. Ask a cross-knowledge-base question and let the platform distribute and synthesize the answer
+## Documentation
 
-## Validation Status
-The current codebase has already passed:
-- Backend automated tests
-- Full backend compilation
-- Frontend production build
-- End-to-end validation for key feature flows
+- `README.md`: Chinese documentation.
+- `CONTRIBUTING.md`: Contribution guide.
+- `CHANGELOG.md`: Change log.
+- `doc/adr/001-system-boundary.md`: Backend and server boundary.
+- `doc/adr/002-database-strategy.md`: Database strategy.
+- `doc/adr/003-api-design-conventions.md`: API conventions.
+- `doc/adr/004-vector-store-selection.md`: Vector store decision.
+- `doc/adr/005-workspace-data-source.md`: Workspace data source strategy.
 
-## Typical Use Cases
-- Enterprise knowledge base construction
-- Intelligent document retrieval and QA
-- Internal policy, product, and R&D documentation support
-- Structured database + unstructured document hybrid querying
-- Local desktop knowledge assistant scenarios
+## Open Source Notes
 
-## Contribution
-Contributions are welcome through issues, feature branches, and pull requests.
-
-Recommended workflow:
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a pull request
+This repository contains a sanitized source snapshot. Local `.env` files, runtime data, uploads, caches, certificates, private keys, and test scripts are not included.
 
 ## License
-No standalone license file is currently included. If you plan to publish this project openly, adding a license file is recommended.
+
+This project is released under the MIT License. See `LICENSE` for details.
