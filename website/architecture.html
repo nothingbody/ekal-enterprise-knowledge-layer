@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="知枢 RAG Platform">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="部署架构 — 知枢 RAG 智能知识平台">
+  <meta property="og:image" content="/og-preview.png">
+  <meta property="og:description" content="知枢支持桌面版、Docker 服务器版和移动端三种部署方式，灵活适配不同需求。">
+  <meta property="og:url" content="http://example.com/architecture.html">
+  <link rel="canonical" href="http://example.com/architecture.html">
+  <meta name="description" content="知枢 RAG 平台支持桌面版一键安装、Docker 服务器版团队部署和移动端随时访问三种方式。">
+  <title>部署架构 — 知枢 RAG 智能知识平台</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav scrolled">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-icon">枢</span><span class="logo-text">知枢</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="features.html">功能</a>
+        <a href="skills.html">技能市场</a>
+        <a href="docs.html">文档</a>
+        <a href="faq.html">FAQ</a>
+        <a href="pricing.html">定价</a>
+        <a href="changelog.html">更新日志</a>
+        <a href="download.html" class="nav-cta">下载</a>
+      </div>
+      <button class="nav-toggle" aria-label="打开导航菜单" onclick="document.getElementById('navLinks').classList.toggle('show')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div style="padding-top:64px">
+    <section class="architecture" style="padding-top:60px">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-tag">部署架构</div>
+          <h2>三种部署方式，灵活适配</h2>
+          <p>从个人使用到大型企业，选择最适合你的方式</p>
+        </div>
+        <div class="arch-grid">
+          <div class="arch-card">
+            <div class="arch-icon">💻</div>
+            <div class="arch-badge">桌面版</div>
+            <h3>个人 / 小团队</h3>
+            <p>Electron 封装，双击安装即用。内嵌后端和向量数据库，无需配置。</p>
+            <ul><li>一键安装，零配置</li><li>数据完全保存在本地</li><li>Windows / macOS / Linux</li></ul>
+            <div class="arch-price">免费</div>
+          </div>
+          <div class="arch-card featured">
+            <div class="arch-popular">推荐</div>
+            <div class="arch-icon">🏢</div>
+            <div class="arch-badge">服务器版</div>
+            <h3>团队 / 企业</h3>
+            <p>Docker Compose 一键部署。中心化管理用户、设备和用量。</p>
+            <ul><li>PostgreSQL + Redis 生产架构</li><li>多用户 / 多组织 / 多工作空间</li><li>管理后台 Dashboard</li><li>桌面端云同步</li></ul>
+            <div class="arch-price">免费</div>
+          </div>
+          <div class="arch-card">
+            <div class="arch-icon">📱</div>
+            <div class="arch-badge">移动端</div>
+            <h3>随时访问</h3>
+            <p>Android WebView 应用，连接桌面版或服务器版。</p>
+            <ul><li>轻量 WebView 架构</li><li>自定义服务器地址</li><li>深色/浅色自适应</li></ul>
+            <div class="arch-price">免费</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tech-stack">
+      <div class="section-inner">
+        <div class="section-header"><div class="section-tag">技术栈</div><h2>基于成熟开源技术构建</h2></div>
+        <div class="tech-grid">
+          <div class="tech-item"><strong>后端</strong><span>Python · FastAPI · SQLAlchemy</span></div>
+          <div class="tech-item"><strong>前端</strong><span>Vue 3 · TypeScript · Element Plus</span></div>
+          <div class="tech-item"><strong>向量库</strong><span>ChromaDB（嵌入式 / 服务器）</span></div>
+          <div class="tech-item"><strong>数据库</strong><span>PostgreSQL / SQLite</span></div>
+          <div class="tech-item"><strong>桌面端</strong><span>Electron · PyInstaller</span></div>
+          <div class="tech-item"><strong>LLM</strong><span>OpenAI · Claude · DeepSeek · Ollama</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand"><span class="logo-icon">枢</span><div><div class="footer-brand-name">知枢 RAG Platform</div><div class="footer-brand-desc">智能知识平台</div></div></div>
+        <div class="footer-cols">
+          <div class="footer-col"><h4>产品</h4><a href="features.html">核心功能</a><a href="download.html">下载</a><a href="skills.html">技能市场</a><a href="changelog.html">更新日志</a></div>
+          <div class="footer-col"><h4>资源</h4><a href="docs.html">使用文档</a><a href="faq.html">常见问题</a><a href="usecases.html">应用场景</a></div>
+          <div class="footer-col"><h4>联系我们</h4><a href="mailto:support@zhishu.ai">support@zhishu.ai</a></div>
+          <div class="footer-col"><h4>法律</h4><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; <span class="auto-year"></span> 知枢 RAG Platform. All rights reserved.</p></div>
+    </div>
+  </footer>
+<script>document.querySelectorAll(".auto-year").forEach(function(el){el.textContent=new Date().getFullYear()});</script>
+</body>
+</html>

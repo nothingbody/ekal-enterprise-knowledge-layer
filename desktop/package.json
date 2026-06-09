@@ -1,0 +1,106 @@
+{
+  "name": "rag-platform-desktop",
+  "version": "1.0.3",
+  "description": "企业多模态知识协作共享服务平台 — 桌面版",
+  "main": "main.js",
+  "author": "RAG Platform",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development electron .",
+    "dev": "cross-env NODE_ENV=development electron .",
+    "build:frontend": "cd ../frontend && npm run build",
+    "build:backend": "cd ../backend && pyinstaller --noconfirm desktop_main.spec",
+    "build:python": "node scripts/download-python.js",
+    "pack": "electron-builder --dir",
+    "predist": "npm run build:frontend && npm run build:backend && npm run build:python",
+    "dist": "electron-builder",
+    "dist:win": "npm run build:frontend && npm run build:backend && npm run build:python && electron-builder --win",
+    "dist:mac": "npm run build:frontend && npm run build:backend && npm run build:python && electron-builder --mac",
+    "dist:linux": "npm run build:frontend && npm run build:backend && npm run build:python && electron-builder --linux"
+  },
+  "dependencies": {
+    "electron-log": "^5.1.7",
+    "electron-updater": "^6.3.9"
+  },
+  "devDependencies": {
+    "adm-zip": "^0.5.16",
+    "cross-env": "^7.0.3",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.zhishu.ragplatform",
+    "productName": "企业多模态知识协作共享服务平台",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "splash.html",
+      "icon.png",
+      "scripts/"
+    ],
+    "extraResources": [
+      {
+        "from": "../backend/dist/desktop_main/",
+        "to": "backend",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../frontend/dist/",
+        "to": "frontend/dist",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "resources/python",
+        "to": "python",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "resources/frpc.exe",
+        "to": "frpc.exe"
+      }
+    ],
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "https://example.com/downloads"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "include": "installer.nsh"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "icon.png",
+      "category": "public.app-category.productivity"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "icon.png",
+      "category": "Office"
+    }
+  }
+}

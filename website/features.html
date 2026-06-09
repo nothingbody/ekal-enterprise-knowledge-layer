@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="知枢 RAG Platform">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="核心功能 — 知枢 RAG 智能知识平台">
+  <meta property="og:image" content="/og-preview.png">
+  <meta property="og:description" content="多格式文档解析、向量混合检索、智能对话 Agent、多渠道接入，覆盖知识管理全链路。">
+  <meta property="og:url" content="http://example.com/features.html">
+  <link rel="canonical" href="http://example.com/features.html">
+  <title>核心功能 — 知枢 RAG 智能知识平台</title>
+  <meta name="description" content="知枢 RAG 平台核心功能：多格式文档解析、向量混合检索、智能对话 Agent、多渠道接入，覆盖知识管理全链路。">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Feature Page Hero ── */
+    .feat-hero {
+      position: relative; padding: 100px 24px 80px; text-align: center; overflow: hidden;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 8px),
+        linear-gradient(135deg, #1a1f4e 0%, #253a80 25%, #5568a8 50%, #8868b0 75%, #c86898 100%);
+      color: #fff;
+    }
+    .feat-hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+      background: linear-gradient(to bottom, transparent, #f5f6fa);
+      pointer-events: none;
+    }
+    .feat-hero .section-tag {
+      background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+    }
+    .feat-hero h1 {
+      font-size: 40px; font-weight: 700; line-height: 1.3; margin-bottom: 16px;
+      text-shadow: 0 0 40px rgba(255,255,255,0.15);
+    }
+    .feat-hero p { font-size: 17px; color: rgba(255,255,255,0.7); max-width: 540px; margin: 0 auto; line-height: 1.7; }
+    .feat-hero-stats {
+      display: flex; justify-content: center; gap: 48px; margin-top: 48px;
+      position: relative; z-index: 1;
+    }
+    .fhs-item { text-align: center; }
+    .fhs-value { font-size: 32px; font-weight: 700; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.2); }
+    .fhs-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+    .fhs-divider { width: 1px; height: 48px; background: rgba(255,255,255,0.12); align-self: center; }
+
+    /* ── Numbered Feature Sections ── */
+    .feat-sections { padding: 80px 0 40px; background: #f5f6fa; }
+
+    .feat-block {
+      display: flex; gap: 56px; align-items: center;
+      max-width: 1100px; margin: 0 auto 80px; padding: 0 24px;
+    }
+    .feat-block.reverse { flex-direction: row-reverse; }
+    .feat-block:last-child { margin-bottom: 0; }
+
+    .feat-info { flex: 1; }
+    .feat-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 10px; font-size: 15px; font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), #00d4aa);
+      color: #fff; margin-bottom: 16px;
+    }
+    .feat-label {
+      display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--primary); margin-bottom: 10px; margin-left: 10px;
+      vertical-align: middle;
+    }
+    .feat-info h3 {
+      font-size: 26px; font-weight: 700; line-height: 1.35; margin-bottom: 14px;
+      color: var(--text);
+    }
+    .feat-info > p {
+      font-size: 15px; color: var(--text-secondary); line-height: 1.85; margin-bottom: 20px;
+    }
+    .feat-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .feat-tags span {
+      padding: 5px 14px; background: #fff;
+      border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--text-secondary);
+      border: 1px solid var(--border);
+      transition: all .2s;
+    }
+    .feat-tags span:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-bg); }
+
+    .feat-visual { flex: 1; min-width: 0; }
+
+    /* ── Visual Cards (upgraded) ── */
+    .vcard {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .vcard:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .vcard-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px; background: #f5f6f8; border-bottom: 1px solid var(--border);
+      font-size: 13px; color: var(--text-muted);
+    }
+    .vcard-header .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .vcard-header .dot.r { background: #ff5f57; }
+    .vcard-header .dot.y { background: #febc2e; }
+    .vcard-header .dot.g { background: #28c840; }
+    .vcard-body { padding: 18px 20px; background: #fff; }
+
+    .vcard.dark { background: #1a1e2e; }
+    .vcard.dark .vcard-header { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
+    .vcard.dark .vcard-body { background: #1a1e2e; color: rgba(255,255,255,0.9); }
+
+    .vcard-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 0; font-size: 14px; color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    .vcard-row:last-child { border-bottom: none; }
+    .vcard-row .icon { font-size: 18px; }
+    .vcard-row .name { flex: 1; }
+    .vcard-status {
+      font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 99px;
+    }
+    .vcard-status.done { color: #16a34a; background: rgba(22,163,74,0.1); }
+    .vcard-status.wip { color: #f59e0b; background: rgba(245,158,11,0.1); }
+    .vcard-status.queue { color: #8b5cf6; background: rgba(139,92,246,0.1); }
+
+    .vcard-search {
+      padding: 10px 14px; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+      background: rgba(255,255,255,0.04); font-size: 14px; margin-bottom: 14px;
+      color: rgba(255,255,255,0.9);
+    }
+    .vcard-search::before { content: '🔍 '; opacity: 0.5; }
+    .vcard-result {
+      padding: 9px 0; font-size: 13px; color: rgba(255,255,255,0.45);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .vcard-result:last-child { border-bottom: none; }
+    .vcard-score {
+      display: inline-block; width: 42px; font-weight: 700;
+      font-size: 12px; margin-right: 6px;
+    }
+    .vcard-score.high { color: #22c55e; }
+    .vcard-score.mid { color: #60a5fa; }
+    .vcard-score.low { color: #a78bfa; }
+
+    .vchat { display: flex; flex-direction: column; gap: 12px; }
+    .vchat-msg {
+      padding: 12px 16px; border-radius: 14px; font-size: 14px; line-height: 1.7;
+      max-width: 85%;
+    }
+    .vchat-msg.user {
+      background: linear-gradient(135deg, var(--primary), #00bfff);
+      color: #fff; align-self: flex-end; border-bottom-right-radius: 4px;
+    }
+    .vchat-msg.bot {
+      background: #f0f2f6; color: var(--text); align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .vchat-memory {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; color: var(--primary); font-weight: 600; margin-bottom: 8px;
+      padding: 3px 10px; background: var(--primary-bg); border-radius: 6px;
+    }
+    .vchat-ref {
+      display: block; font-size: 11px; color: var(--text-muted);
+      margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border);
+    }
+
+    /* ── More Features Grid ── */
+    .more-feat { padding: 80px 0; background: #fff; }
+    .more-feat .section-header { margin-bottom: 40px; }
+    .mf2-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+    .mf2-card {
+      padding: 28px; border-radius: 14px;
+      background: #f8f9fc; border: 1px solid transparent;
+      transition: all .3s; position: relative; overflow: hidden;
+    }
+    .mf2-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--primary), #00d4aa);
+      opacity: 0; transition: opacity .3s;
+    }
+    .mf2-card:hover { background: #fff; border-color: var(--border); box-shadow: 0 8px 30px rgba(0,0,0,0.06); transform: translateY(-4px); }
+    .mf2-card:hover::before { opacity: 1; }
+
+    .mf2-icon {
+      width: 44px; height: 44px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(0,153,255,0.08), rgba(0,212,170,0.06));
+    }
+    .mf2-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+    .mf2-card p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ── Architecture Highlights ── */
+    .arch-strip {
+      padding: 64px 0; background: #f5f6fa;
+    }
+    .arch-strip-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .as-card {
+      text-align: center; padding: 28px 16px; border-radius: 14px;
+      background: #fff; border: 1px solid var(--border);
+      transition: all .3s;
+    }
+    .as-card:hover { border-color: transparent; box-shadow: 0 8px 24px rgba(0,0,0,0.07); transform: translateY(-3px); }
+    .as-icon {
+      width: 48px; height: 48px; border-radius: 12px; margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+      background: linear-gradient(135deg, rgba(0,153,255,0.1), rgba(0,212,170,0.06));
+    }
+    .as-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .as-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ── CTA ── */
+    .feat-cta {
+      padding: 0;
+    }
+    .feat-cta-card {
+      text-align: center; padding: 72px 40px; color: #fff; position: relative; overflow: hidden;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 8px),
+        linear-gradient(135deg, #1e2d6a, #5568a8 40%, #8868b0 70%, #c86898);
+    }
+    .feat-cta-card h2 {
+      font-size: 30px; font-weight: 600; margin-bottom: 12px;
+      text-shadow: 0 0 30px rgba(255,255,255,0.15);
+    }
+    .feat-cta-card > p { font-size: 15px; color: rgba(255,255,255,0.65); margin-bottom: 28px; }
+    .feat-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .feat-cta-btns .btn-primary {
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(8px);
+    }
+    .feat-cta-btns .btn-primary:hover { background: rgba(255,255,255,0.25); box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+    .feat-cta-btns .btn-ghost {
+      color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); background: transparent;
+    }
+    .feat-cta-btns .btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .feat-hero h1 { font-size: 28px; }
+      .feat-hero { padding: 80px 24px 60px; }
+      .feat-hero-stats { gap: 20px; flex-wrap: wrap; }
+      .fhs-value { font-size: 24px; }
+      .fhs-divider { display: none; }
+      .feat-block, .feat-block.reverse { flex-direction: column; gap: 28px; }
+      .feat-info h3 { font-size: 22px; }
+      .mf2-grid { grid-template-columns: 1fr; }
+      .arch-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .feat-cta-card { padding: 48px 24px; }
+      .feat-cta-card h2 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav scrolled">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-icon">枢</span><span class="logo-text">知枢</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="features.html" class="nav-active">功能</a>
+        <a href="skills.html">技能市场</a>
+        <a href="docs.html">文档</a>
+        <a href="faq.html">FAQ</a>
+        <a href="pricing.html">定价</a>
+        <a href="changelog.html">更新日志</a>
+        <a href="download.html" class="nav-cta">下载</a>
+      </div>
+      <button class="nav-toggle" aria-label="打开导航菜单" onclick="document.getElementById('navLinks').classList.toggle('show')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="feat-hero">
+    <div class="section-tag">Features</div>
+    <h1>从文档入库到智能问答<br>覆盖知识管理全链路</h1>
+    <p>让每一份文档都能被 AI 理解和利用，构建企业专属的智能知识大脑</p>
+    <div class="feat-hero-stats">
+      <div class="fhs-item">
+        <div class="fhs-value">15+</div>
+        <div class="fhs-label">文档格式支持</div>
+      </div>
+      <div class="fhs-divider"></div>
+      <div class="fhs-item">
+        <div class="fhs-value" id="feat-skill-count">—</div>
+        <div class="fhs-label">社区技能</div>
+      </div>
+      <div class="fhs-divider"></div>
+      <div class="fhs-item">
+        <div class="fhs-value">6+</div>
+        <div class="fhs-label">接入渠道</div>
+      </div>
+      <div class="fhs-divider"></div>
+      <div class="fhs-item">
+        <div class="fhs-value">100%</div>
+        <div class="fhs-label">私有部署</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Feature Sections -->
+  <section class="feat-sections">
+
+    <!-- 1. Knowledge Management -->
+    <div class="feat-block fade-in">
+      <div class="feat-info">
+        <div>
+          <span class="feat-num">1</span>
+          <span class="feat-label">知识管理</span>
+        </div>
+        <h3>多格式文档解析<br>与智能知识入库</h3>
+        <p>支持 PDF、Word、Excel、PPT、Markdown、HTML、图片等 15+ 格式。自动解析、智能切分、向量化存储。支持文档去重、分块编辑、版本管理和知识库导入导出。</p>
+        <div class="feat-tags">
+          <span>PDF</span><span>Word</span><span>Excel</span><span>PPT</span>
+          <span>Markdown</span><span>HTML</span><span>图片 OCR</span>
+        </div>
+      </div>
+      <div class="feat-visual">
+        <div class="vcard">
+          <div class="vcard-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span>知识库管理</span>
+          </div>
+          <div class="vcard-body">
+            <div class="vcard-row"><span class="icon">📄</span><span class="name">产品设计文档.pdf</span><span class="vcard-status done">已完成</span></div>
+            <div class="vcard-row"><span class="icon">📊</span><span class="name">Q4 财务报表.xlsx</span><span class="vcard-status done">已完成</span></div>
+            <div class="vcard-row"><span class="icon">📝</span><span class="name">API 接口文档.md</span><span class="vcard-status done">已完成</span></div>
+            <div class="vcard-row"><span class="icon">🖼️</span><span class="name">架构设计图.png</span><span class="vcard-status wip">解析中</span></div>
+            <div class="vcard-row"><span class="icon">📑</span><span class="name">员工手册 v3.docx</span><span class="vcard-status queue">排队中</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Hybrid Retrieval -->
+    <div class="feat-block reverse fade-in">
+      <div class="feat-info">
+        <div>
+          <span class="feat-num">2</span>
+          <span class="feat-label">智能检索</span>
+        </div>
+        <h3>向量 + 关键词<br>混合检索引擎</h3>
+        <p>结合向量语义检索和 BM25 关键词召回，支持查询改写、多查询扩展、Reranker 重排序。不仅找到包含关键词的内容，更能理解问题背后的意图。</p>
+        <div class="feat-tags">
+          <span>语义检索</span><span>BM25</span><span>查询改写</span><span>重排序</span><span>上下文扩展</span>
+        </div>
+      </div>
+      <div class="feat-visual">
+        <div class="vcard dark">
+          <div class="vcard-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span>检索结果</span>
+          </div>
+          <div class="vcard-body">
+            <div class="vcard-search">上季度的营收增长率是多少？</div>
+            <div class="vcard-result"><span class="vcard-score high">98.2%</span>Q4 财务报告 · 第3页 · "营收同比增长 23.5%..."</div>
+            <div class="vcard-result"><span class="vcard-score mid">91.7%</span>年度总结 · 第7页 · "全年营收突破..."</div>
+            <div class="vcard-result"><span class="vcard-score low">85.3%</span>董事会纪要 · 第2页 · "Q4 业绩超预期..."</div>
+            <div class="vcard-result"><span class="vcard-score low">82.1%</span>战略规划 · 第5页 · "基于营收趋势..."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. AI Capabilities -->
+    <div class="feat-block fade-in">
+      <div class="feat-info">
+        <div>
+          <span class="feat-num">3</span>
+          <span class="feat-label">AI 能力</span>
+        </div>
+        <h3>智能对话 · 记忆<br>Agent 编排</h3>
+        <p>流式问答、多轮上下文、用户记忆系统、用户画像感知。支持 Agent 工具调用、MCP 协议、技能链、多 Agent 跨知识库协作。让 AI 不仅回答问题，还能执行任务。</p>
+        <div class="feat-tags">
+          <span>流式对话</span><span>用户记忆</span><span>Agent</span><span>MCP</span><span>技能链</span><span>多Agent协作</span>
+        </div>
+      </div>
+      <div class="feat-visual">
+        <div class="vcard">
+          <div class="vcard-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span>智能对话</span>
+          </div>
+          <div class="vcard-body">
+            <div class="vchat">
+              <div class="vchat-msg user">我们上季度的核心产品表现如何？</div>
+              <div class="vchat-msg bot">
+                <div class="vchat-memory">🧠 关联记忆: 用户关注产品线 A 和 B</div>
+                根据 Q4 报告，核心产品线表现优异：<br>
+                • 产品 A 营收增长 28%，超出预期<br>
+                • 产品 B 用户数突破 50 万<br>
+                <span class="vchat-ref">📎 引用: Q4报告.pdf · 年度总结.docx</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- More Features -->
+  <section class="more-feat">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">更多能力</div>
+        <h2>丰富的扩展能力</h2>
+        <p>从数据库查询到多渠道接入，覆盖企业知识管理的方方面面</p>
+      </div>
+    </div>
+    <div class="mf2-grid">
+      <div class="mf2-card fade-in">
+        <div class="mf2-icon">🗃️</div>
+        <h4>数据库查询</h4>
+        <p>自然语言转 SQL，支持 MySQL、PostgreSQL、SQLite，AI 自动分析并解读查询结果</p>
+      </div>
+      <div class="mf2-card fade-in">
+        <div class="mf2-icon">📡</div>
+        <h4>多渠道接入</h4>
+        <p>企业微信 · 钉钉 · 飞书 · Telegram · Discord · Slack 一键集成</p>
+      </div>
+      <div class="mf2-card fade-in">
+        <div class="mf2-icon">🔗</div>
+        <h4>应用发布</h4>
+        <p>一键发布为 Web 应用，生成分享链接和嵌入代码，无需额外部署</p>
+      </div>
+      <div class="mf2-card fade-in">
+        <div class="mf2-icon">⚡</div>
+        <h4>自动化任务</h4>
+        <p>定时触发、Webhook 触发、Cron 表达式，实现知识处理自动化</p>
+      </div>
+      <div class="mf2-card fade-in">
+        <div class="mf2-icon">🎙️</div>
+        <h4>语音交互</h4>
+        <p>语音输入转文字 + TTS 语音朗读回答，支持语音对话场景</p>
+      </div>
+      <div class="mf2-card fade-in">
+        <div class="mf2-icon">🔐</div>
+        <h4>安全合规</h4>
+        <p>2FA 两步验证 · API Key 加密 · 完整审计日志 · 令牌黑名单机制</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Highlights -->
+  <section class="arch-strip">
+    <div class="arch-strip-inner">
+      <div class="as-card fade-in">
+        <div class="as-icon">🏗️</div>
+        <h4>模块化架构</h4>
+        <p>FastAPI + Vue 3 前后分离，组件可独立替换升级</p>
+      </div>
+      <div class="as-card fade-in">
+        <div class="as-icon">🔌</div>
+        <h4>多模型适配</h4>
+        <p>OpenAI、Ollama、通义千问等主流大模型统一接入</p>
+      </div>
+      <div class="as-card fade-in">
+        <div class="as-icon">📦</div>
+        <h4>一键部署</h4>
+        <p>Docker Compose 或 Windows 安装包，5 分钟完成部署</p>
+      </div>
+      <div class="as-card fade-in">
+        <div class="as-icon">🌐</div>
+        <h4>跨平台支持</h4>
+        <p>Windows · macOS · Linux · Docker，随处可用</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="feat-cta">
+    <div class="feat-cta-card">
+      <h2>立即体验知枢的全部能力</h2>
+      <p>免费下载，开箱即用。数据安全，完全可控。</p>
+      <div class="feat-cta-btns">
+        <a href="download.html" class="btn btn-primary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          免费下载
+        </a>
+        <a href="docs.html" class="btn btn-ghost btn-lg">查看文档 &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand"><span class="logo-icon">枢</span><div><div class="footer-brand-name">知枢 RAG Platform</div><div class="footer-brand-desc">智能知识平台</div></div></div>
+        <div class="footer-cols">
+          <div class="footer-col"><h4>产品</h4><a href="features.html">核心功能</a><a href="download.html">下载</a><a href="skills.html">技能市场</a><a href="changelog.html">更新日志</a></div>
+          <div class="footer-col"><h4>资源</h4><a href="docs.html">使用文档</a><a href="faq.html">常见问题</a><a href="usecases.html">应用场景</a></div>
+          <div class="footer-col"><h4>联系我们</h4><a href="mailto:support@zhishu.ai">support@zhishu.ai</a></div>
+          <div class="footer-col"><h4>法律</h4><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; <span class="auto-year"></span> 知枢 RAG Platform. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+    fetch('/api/v1/skills/marketplace?page=1&page_size=1')
+      .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function(d) {
+        var el = document.getElementById('feat-skill-count');
+        if (el && d.total) el.textContent = d.total + '+';
+      })
+      .catch(function() {
+        var el = document.getElementById('feat-skill-count');
+        if (el) el.textContent = '50+';
+      });
+  </script>
+</body>
+</html>

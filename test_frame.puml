@@ -1,0 +1,25 @@
+@startuml
+skinparam defaultFontName 宋体
+skinparam usecase {
+    BackgroundColor White|#DDDDDD
+    BorderColor Black
+    ArrowColor Black
+}
+skinparam actor {
+    BackgroundColor White
+    BorderColor Black
+}
+skinparam frame {
+    BorderColor Black
+    BackgroundColor White
+}
+
+actor "学生" as U1
+
+frame "uc 主系统" {
+    usecase "加入班级" as UC1
+    usecase "答题" as UC2
+}
+U1 -- UC1
+U1 -- UC2
+@enduml

@@ -1,0 +1,43 @@
+{
+  "name": "rag-platform-frontend",
+  "private": true,
+  "version": "1.0.1",
+  "description": "企业多模态知识协作共享服务平台 — 前端",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@rag-platform/shared-utils": "file:../shared-frontend",
+    "@vueuse/core": "^14.2.1",
+    "axios": "^1.13.6",
+    "dompurify": "^3.3.3",
+    "element-plus": "^2.13.3",
+    "highlight.js": "^11.11.1",
+    "lucide-vue-next": "^0.577.0",
+    "markdown-it": "^14.1.1",
+    "nprogress": "^0.2.0",
+    "pinia": "^3.0.4",
+    "qrcode": "^1.5.4",
+    "radix-vue": "^1.9.17",
+    "vue": "^3.5.25",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/dompurify": "^3.0.5",
+    "@types/node": "^24.12.0",
+    "@types/nprogress": "^0.2.3",
+    "@types/qrcode": "^1.5.6",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "@vue/tsconfig": "^0.8.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1",
+    "vue-tsc": "^3.1.5"
+  }
+}

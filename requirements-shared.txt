@@ -1,0 +1,33 @@
+# 知枢 RAG 平台共享依赖版本约束
+# Backend 和 Server 共同引用此文件以确保版本一致
+#
+# 使用方式：
+#   pip install -c requirements-shared.txt -r backend/requirements.txt
+#   pip install -c requirements-shared.txt -r server/requirements.txt
+
+# ============ Web 框架 ============
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+slowapi==0.1.9
+
+# ============ 数据库 ============
+sqlalchemy==2.0.36
+asyncpg==0.30.0
+alembic==1.14.1
+
+# ============ 数据验证 ============
+pydantic==2.10.4
+pydantic-settings==2.7.1
+
+# ============ 安全与认证 ============
+PyJWT[crypto]==2.11.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.2.1
+cryptography>=44.0.0
+
+# ============ HTTP 客户端 ============
+httpx==0.28.1
+
+# ============ 缓存 ============
+redis==5.2.1

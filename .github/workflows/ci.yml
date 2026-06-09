@@ -1,0 +1,194 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-asyncio httpx
+
+      - name: Run tests
+        run: pytest tests/ -v --tb=short
+        env:
+          DATABASE_URL: "sqlite+aiosqlite:///./test.db"
+          SECRET_KEY: "test"
+          DESKTOP_MODE: "true"
+
+  server-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: server/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-asyncio httpx aiosqlite email-validator
+
+      - name: Run tests
+        run: pytest tests/ -v --tb=short
+        env:
+          DATABASE_URL: "sqlite+aiosqlite:///./test.db"
+          REDIS_URL: "redis://localhost:6379/0"
+          SECRET_KEY: "test"
+          PYTHONPATH: "."
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - run: npm ci --prefer-offline
+      - run: npm run build
+
+  admin-frontend-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: admin-frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: admin-frontend/package-lock.json
+
+      - run: npm ci --prefer-offline
+      - run: npm run build
+
+  # 依赖安全审计
+  security-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pip-audit
+        run: pip install pip-audit
+
+      - name: Audit Backend dependencies
+        run: |
+          pip install -r backend/requirements.txt --quiet
+          pip-audit --desc
+
+      - name: Audit Server dependencies
+        run: |
+          pip install -r server/requirements.txt --quiet
+          pip-audit --desc
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Audit Frontend dependencies
+        run: cd frontend && npm audit --audit-level=high
+
+      - name: Audit Admin-Frontend dependencies
+        run: cd admin-frontend && npm audit --audit-level=high
+
+  # 前端 E2E 测试（push 到 main 或手动触发时运行，需配置 E2E 相关 secrets）
+  frontend-e2e:
+    runs-on: ubuntu-latest
+    needs: [frontend-build]
+    if: >-
+      (github.event_name == 'workflow_dispatch') ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Check E2E secrets
+        id: check-secrets
+        run: |
+          if [ -z "${{ secrets.E2E_BASE_URL }}" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::E2E secrets not configured — skipping E2E tests"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.check-secrets.outputs.skip != 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.check-secrets.outputs.skip != 'true'
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        if: steps.check-secrets.outputs.skip != 'true'
+        run: npm ci --prefer-offline
+
+      - name: Install Playwright browsers
+        if: steps.check-secrets.outputs.skip != 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        if: steps.check-secrets.outputs.skip != 'true'
+        run: npx playwright test --project=chromium
+        env:
+          E2E_BASE_URL: ${{ secrets.E2E_BASE_URL }}
+          E2E_TEST_EMAIL: ${{ secrets.E2E_TEST_EMAIL }}
+          E2E_TEST_PASSWORD: ${{ secrets.E2E_TEST_PASSWORD }}
+        continue-on-error: true
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always() && steps.check-secrets.outputs.skip != 'true'
+        with:
+          name: playwright-report
+          path: frontend/playwright-report/
+          retention-days: 7

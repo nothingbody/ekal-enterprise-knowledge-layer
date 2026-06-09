@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="企业多模态知识协作共享服务平台，支持文档管理、智能对话、数据库查询" />
+    <meta name="theme-color" content="#2563eb" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <title>企业多模态知识协作共享服务平台</title>
+    <!-- Fonts bundled locally via @fontsource (no CDN dependency) -->
+  </head>
+  <body>
+    <noscript>
+      <div style="text-align:center;padding:80px 20px;font-family:system-ui">
+        <h2>请启用 JavaScript</h2>
+        <p>企业多模态知识协作共享服务平台需要 JavaScript 才能运行。</p>
+      </div>
+    </noscript>
+    <div id="app">
+      <!-- Splash screen shown while JS loads -->
+      <div id="app-loading" style="height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f8fafc;font-family:Inter,system-ui,sans-serif;">
+        <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#2563eb,#0ea5e9);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,99,235,0.3);animation:pulse 1.5s ease infinite;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="#fff"/><path d="M2 17l10 5 10-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/><path d="M2 12l10 5 10-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/></svg>
+        </div>
+        <div style="margin-top:20px;font-size:15px;font-weight:600;color:#1e293b;letter-spacing:0;">企业多模态知识协作共享服务平台</div>
+        <div id="app-loading-text" style="margin-top:6px;font-size:12px;color:#94a3b8;">正在加载...</div>
+        <div id="app-loading-error" style="display:none;margin-top:16px;text-align:center;max-width:360px;">
+          <div style="font-size:13px;color:#dc2626;font-weight:500;margin-bottom:8px;">加载超时</div>
+          <div style="font-size:12px;color:#64748b;line-height:1.6;margin-bottom:12px;">应用加载时间过长，可能是网络问题或资源未正确安装。</div>
+          <button onclick="location.reload()" style="padding:6px 16px;background:#2563eb;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;">刷新页面</button>
+        </div>
+        <style>@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}</style>
+      </div>
+    </div>
+    <script>
+      window.__APP_LOAD_TIMER = setTimeout(function() {
+        var el = document.getElementById('app-loading');
+        if (el) {
+          var txt = document.getElementById('app-loading-text');
+          var err = document.getElementById('app-loading-error');
+          if (txt) txt.style.display = 'none';
+          if (err) err.style.display = 'block';
+        }
+      }, 15000);
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

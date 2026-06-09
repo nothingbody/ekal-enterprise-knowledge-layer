@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="知枢 RAG Platform">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="更新日志 — 知枢 RAG 智能知识平台">
+  <meta property="og:image" content="/og-preview.png">
+  <meta property="og:description" content="知枢 RAG 平台版本更新记录，了解每个版本的新功能、改进和修复。">
+  <meta property="og:url" content="http://example.com/changelog.html">
+  <link rel="canonical" href="http://example.com/changelog.html">
+  <title>更新日志 — 知枢 RAG 智能知识平台</title>
+  <meta name="description" content="知枢 RAG 平台的版本更新记录，了解每个版本的新功能、改进和修复。">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cl-hero {
+      position: relative; padding: 88px 24px 64px; text-align: center; overflow: hidden;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 8px),
+        linear-gradient(135deg, #1a1f4e 0%, #253a80 30%, #5568a8 60%, #8868b0 100%);
+      color: #fff;
+    }
+    .cl-hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+      background: linear-gradient(to bottom, transparent, #f5f6fa);
+      pointer-events: none;
+    }
+    .cl-hero .section-tag {
+      background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+    }
+    .cl-hero h1 {
+      font-size: 36px; font-weight: 700; margin-bottom: 12px;
+      text-shadow: 0 0 40px rgba(255,255,255,0.15);
+    }
+    .cl-hero p { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto; }
+
+    .cl-body { padding: 60px 0 80px; background: #f5f6fa; }
+
+    /* ── Timeline ── */
+    .cl-timeline { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    .cl-entry {
+      position: relative; margin-left: 80px; padding: 0 0 48px 40px;
+      border-left: 2px solid var(--border);
+    }
+    .cl-entry::before {
+      content: ''; position: absolute; left: -8px; top: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--bg); border: 3px solid var(--primary);
+      box-shadow: 0 0 0 4px rgba(0,153,255,0.1);
+      transition: all .3s;
+    }
+    .cl-entry:hover::before { box-shadow: 0 0 0 6px rgba(0,153,255,0.15); }
+    .cl-entry:last-child { border-left-color: transparent; padding-bottom: 0; }
+
+    .cl-version-col {
+      position: absolute; left: -120px; top: 0; width: 100px; text-align: right;
+    }
+    .cl-badge {
+      display: inline-block; padding: 4px 14px; border-radius: 99px;
+      font-size: 13px; font-weight: 700; font-family: 'SF Mono','Cascadia Code',monospace;
+      background: #fff; border: 1px solid var(--border); color: var(--text);
+      transition: all .3s;
+    }
+    .cl-badge.latest {
+      background: linear-gradient(135deg, var(--primary), #00d4aa);
+      border-color: transparent; color: #fff;
+      box-shadow: 0 2px 8px rgba(0,153,255,0.2);
+    }
+    .cl-date { display: block; font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+
+    .cl-card {
+      background: #fff; border-radius: 14px; padding: 24px 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04); border: 1px solid var(--border);
+      transition: all .3s;
+    }
+    .cl-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.07); border-color: transparent; }
+    .cl-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--text); }
+
+    /* Markdown content inside cards */
+    .cl-card-body { font-size: 14px; color: var(--text-secondary); line-height: 1.85; }
+    .cl-card-body h2 { font-size: 15px; font-weight: 600; color: var(--text); margin: 16px 0 8px; }
+    .cl-card-body h3 { font-size: 14px; font-weight: 600; color: var(--text-secondary); margin: 14px 0 6px; }
+    .cl-card-body h4 { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin: 12px 0 6px; }
+    .cl-card-body p { margin: 6px 0; }
+    .cl-card-body ul, .cl-card-body ol { margin: 6px 0 6px 20px; }
+    .cl-card-body li { margin-bottom: 3px; }
+    .cl-card-body code {
+      background: var(--primary-bg); padding: 1px 6px; border-radius: 5px;
+      font-family: 'SF Mono','Cascadia Code',monospace; font-size: 12px; color: var(--primary);
+    }
+    .cl-card-body pre {
+      background: #1a1e2e; color: #a0a8be; padding: 14px 18px; border-radius: 8px;
+      overflow-x: auto; margin: 10px 0; font-size: 13px; line-height: 1.6;
+    }
+    .cl-card-body pre code { background: none; color: inherit; padding: 0; }
+    .cl-card-body a { color: var(--primary); text-decoration: none; }
+    .cl-card-body a:hover { text-decoration: underline; }
+    .cl-card-body blockquote {
+      border-left: 3px solid var(--primary); padding: 8px 14px; margin: 10px 0;
+      background: rgba(0,153,255,0.04); border-radius: 0 6px 6px 0; color: var(--text-secondary);
+    }
+
+    .cl-loading { text-align: center; padding: 80px 0; color: #888; }
+    .loading-spinner {
+      width: 36px; height: 36px; margin: 0 auto 16px;
+      border: 3px solid #e5e7eb; border-top-color: var(--primary);
+      border-radius: 50%; animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .cl-error { text-align: center; padding: 80px 0; color: #ef4444; }
+    .cl-error button {
+      margin-top: 12px; padding: 10px 28px; border: 1px solid var(--border);
+      border-radius: 8px; background: #fff; cursor: pointer; font-size: 14px;
+      transition: all .2s;
+    }
+    .cl-error button:hover { background: var(--bg-surface); border-color: var(--primary); color: var(--primary); }
+    .cl-empty { text-align: center; padding: 80px 0; color: var(--text-muted); font-size: 15px; }
+
+    .cl-card-body.collapsed { max-height: 160px; overflow: hidden; position: relative; }
+    .cl-card-body.collapsed::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
+      pointer-events: none;
+    }
+    .cl-expand-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      margin-top: 10px; padding: 6px 16px; border: 1px solid var(--border);
+      border-radius: 6px; background: #fff; font-size: 13px; color: var(--text-secondary);
+      cursor: pointer; transition: all .2s;
+    }
+    .cl-expand-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+    @media (max-width: 768px) {
+      .cl-hero h1 { font-size: 26px; }
+      .cl-hero { padding: 72px 24px 48px; }
+      .cl-entry { margin-left: 24px; padding-left: 28px; }
+      .cl-version-col { position: static; width: auto; text-align: left; margin-bottom: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav scrolled">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-icon">枢</span><span class="logo-text">知枢</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="features.html">功能</a>
+        <a href="skills.html">技能市场</a>
+        <a href="docs.html">文档</a>
+        <a href="faq.html">FAQ</a>
+        <a href="pricing.html">定价</a>
+        <a href="changelog.html" class="nav-active">更新日志</a>
+        <a href="download.html" class="nav-cta">下载</a>
+      </div>
+      <button class="nav-toggle" aria-label="打开导航菜单" onclick="document.getElementById('navLinks').classList.toggle('show')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <section class="cl-hero">
+    <div class="section-tag">Changelog</div>
+    <h1>更新日志</h1>
+    <p>每个版本的新功能、改进和修复记录</p>
+  </section>
+
+  <section class="cl-body">
+    <div class="cl-timeline" id="cl-timeline">
+      <div class="cl-loading" id="cl-loading">
+        <div class="loading-spinner"></div>
+        <p>加载更新日志...</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand"><span class="logo-icon">枢</span><div><div class="footer-brand-name">知枢 RAG Platform</div><div class="footer-brand-desc">智能知识平台</div></div></div>
+        <div class="footer-cols">
+          <div class="footer-col"><h4>产品</h4><a href="features.html">核心功能</a><a href="download.html">下载</a><a href="skills.html">技能市场</a><a href="changelog.html">更新日志</a></div>
+          <div class="footer-col"><h4>资源</h4><a href="docs.html">使用文档</a><a href="faq.html">常见问题</a><a href="usecases.html">应用场景</a></div>
+          <div class="footer-col"><h4>联系我们</h4><a href="mailto:support@zhishu.ai">support@zhishu.ai</a></div>
+          <div class="footer-col"><h4>法律</h4><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; <span class="auto-year"></span> 知枢 RAG Platform. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="marked.umd.js"></script>
+  <script>
+    marked.use({ breaks: true });
+
+    function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+    function renderBody(md) {
+      if (!md) return '';
+      try { return marked.parse(md); }
+      catch(e) { return '<p>' + esc(md) + '</p>'; }
+    }
+
+    var COLLAPSE_HEIGHT = 160;
+
+    function addExpandToggle(bodyEl) {
+      if (bodyEl.scrollHeight <= COLLAPSE_HEIGHT + 40) return;
+      bodyEl.classList.add('collapsed');
+      var btn = document.createElement('button');
+      btn.className = 'cl-expand-btn';
+      btn.textContent = '展开全部 ▾';
+      btn.onclick = function() {
+        if (bodyEl.classList.contains('collapsed')) {
+          bodyEl.classList.remove('collapsed');
+          btn.textContent = '收起 ▴';
+        } else {
+          bodyEl.classList.add('collapsed');
+          btn.textContent = '展开全部 ▾';
+          bodyEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      };
+      bodyEl.parentNode.appendChild(btn);
+    }
+
+    function renderEntries(items) {
+      var timeline = document.getElementById('cl-timeline');
+      timeline.innerHTML = '';
+      if (!items.length) {
+        timeline.innerHTML = '<div class="cl-empty">暂无更新日志</div>';
+        return;
+      }
+      items.forEach(function(item, idx) {
+        var date = (item.extra && item.extra.release_date) ? item.extra.release_date : (item.created_at ? item.created_at.split('T')[0] : '');
+        var entry = document.createElement('div');
+        entry.className = 'cl-entry fade-in';
+        entry.innerHTML =
+          '<div class="cl-version-col">' +
+            '<span class="cl-badge' + (idx === 0 ? ' latest' : '') + '">' + esc(item.version || '') + '</span>' +
+            '<span class="cl-date">' + esc(date) + '</span>' +
+          '</div>' +
+          '<div class="cl-card">' +
+            '<h3>' + esc(item.title) + '</h3>' +
+            '<div class="cl-card-body">' + renderBody(item.body) + '</div>' +
+          '</div>';
+        timeline.appendChild(entry);
+        addExpandToggle(entry.querySelector('.cl-card-body'));
+      });
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.cl-entry').forEach(function(el) { observer.observe(el); });
+    }
+
+    var FALLBACK_CHANGELOG = [
+      {
+        version: 'v1.0.0',
+        title: '知枢 v1.0.0 正式版',
+        body: '### 新功能\n- 多格式文档解析（PDF、Word、Excel、PPT、Markdown 等 15+ 格式）\n- 向量 + BM25 混合检索引擎\n- 智能对话与 Agent 工具调用\n- MCP 协议支持\n- 技能市场与 Prompt 技能\n- 多渠道接入（企业微信、钉钉、飞书等）\n- 用户记忆系统\n- 应用发布与分享\n- 工作空间协作\n- 2FA 两步验证',
+        extra: { release_date: '2026-03-18' }
+      }
+    ];
+
+    function loadChangelog() {
+      var loading = document.getElementById('cl-loading');
+      if (loading) loading.style.display = '';
+      fetch('/api/v1/site/public/changelog?page_size=50')
+        .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function(data) {
+          var items = data.items || [];
+          renderEntries(items.length ? items : FALLBACK_CHANGELOG);
+        })
+        .catch(function() {
+          renderEntries(FALLBACK_CHANGELOG);
+        });
+    }
+    loadChangelog();
+  </script>
+</body>
+</html>

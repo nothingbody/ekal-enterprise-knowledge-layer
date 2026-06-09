@@ -1,0 +1,143 @@
+{
+  "dataset_name": "rag_benchmark_v1",
+  "version": "1.0.0",
+  "description": "知枢 RAG 平台基础评测数据集",
+  "created_at": "2026-03-29",
+  "samples": [
+    {
+      "id": "sample_001",
+      "category": "factual_qa",
+      "question": "知枢平台支持哪些文档格式？",
+      "ground_truth": "知枢平台支持 PDF、Word、Excel、PPT、Markdown、HTML、TXT、图片等多格式文档解析。",
+      "relevant_doc_ids": ["doc_readme_001"],
+      "difficulty": "easy",
+      "tags": ["功能", "文档解析"]
+    },
+    {
+      "id": "sample_002",
+      "category": "factual_qa",
+      "question": "知枢平台的检索方式有哪些？",
+      "ground_truth": "知枢平台支持向量检索和 BM25 混合召回，还包括查询改写、多查询扩展和重排序功能。",
+      "relevant_doc_ids": ["doc_readme_001"],
+      "difficulty": "easy",
+      "tags": ["功能", "检索"]
+    },
+    {
+      "id": "sample_003",
+      "category": "factual_qa",
+      "question": "知枢平台支持哪些渠道接入？",
+      "ground_truth": "知枢平台支持企业微信、钉钉、飞书、Telegram、Discord、Slack 等渠道接入。",
+      "relevant_doc_ids": ["doc_readme_001"],
+      "difficulty": "easy",
+      "tags": ["功能", "渠道"]
+    },
+    {
+      "id": "sample_004",
+      "category": "factual_qa",
+      "question": "知枢平台的技术架构是什么？",
+      "ground_truth": "后端使用 Python 3.11+、FastAPI、SQLAlchemy Async、PostgreSQL/SQLite、ChromaDB、Celery+Redis；前端使用 Vue 3、TypeScript、Vite、Element Plus、Pinia。",
+      "relevant_doc_ids": ["doc_readme_001"],
+      "difficulty": "medium",
+      "tags": ["架构", "技术栈"]
+    },
+    {
+      "id": "sample_005",
+      "category": "multi_hop",
+      "question": "在云端模式下，Backend 和 Server 分别负责什么？",
+      "ground_truth": "Server 负责租户管理、用户管理、审计和技能分发；Backend 负责 RAG 业务，包括知识库、对话和渠道管理。",
+      "relevant_doc_ids": ["doc_adr_001", "doc_readme_001"],
+      "difficulty": "medium",
+      "tags": ["架构", "职责边界"]
+    },
+    {
+      "id": "sample_006",
+      "category": "multi_hop",
+      "question": "如何在生产环境部署知枢平台？",
+      "ground_truth": "生产环境需要配置 SECRET_KEY、DATABASE_URL、REDIS_URL 等环境变量，可以使用 docker-compose.full-stack.yml 进行全栈部署，包括 PostgreSQL、Redis、Backend、Server、Frontend 和 Nginx。",
+      "relevant_doc_ids": ["doc_deployment_001", "doc_readme_001"],
+      "difficulty": "hard",
+      "tags": ["部署", "运维"]
+    },
+    {
+      "id": "sample_007",
+      "category": "comparison",
+      "question": "ChromaDB 和 PgVector 各适合什么场景？",
+      "ground_truth": "ChromaDB 适合桌面模式、开发测试和文档数小于 10 万的场景，零配置、嵌入式；PgVector 适合文档数超过 10 万、生产环境和多节点部署场景，支持更好的并发和索引。",
+      "relevant_doc_ids": ["doc_adr_004"],
+      "difficulty": "medium",
+      "tags": ["向量存储", "选型"]
+    },
+    {
+      "id": "sample_008",
+      "category": "comparison",
+      "question": "Backend 和 Server 的数据库策略有什么区别？",
+      "ground_truth": "Backend 支持 SQLite（桌面模式）和 PostgreSQL（生产模式），Server 仅支持 PostgreSQL。两者使用独立的 Alembic migration，数据库不共享。",
+      "relevant_doc_ids": ["doc_adr_002"],
+      "difficulty": "medium",
+      "tags": ["数据库", "架构"]
+    },
+    {
+      "id": "sample_009",
+      "category": "summarization",
+      "question": "知枢平台的核心能力有哪些？",
+      "ground_truth": "知枢平台的核心能力包括：1) 知识管理：多格式文档解析、多种切分策略、文档去重；2) 检索与问答：混合检索、查询改写、流式问答、NL2SQL；3) Agent 与扩展：MCP 工具、技能链、多 Agent 协作；4) 平台能力：工作空间协作、应用发布、渠道接入。",
+      "relevant_doc_ids": ["doc_readme_001"],
+      "difficulty": "medium",
+      "tags": ["功能", "概述"]
+    },
+    {
+      "id": "sample_010",
+      "category": "negative",
+      "question": "知枢平台支持图像生成功能吗？",
+      "ground_truth": "根据现有文档，知枢平台主要专注于 RAG（检索增强生成）场景，支持文档解析和智能问答，但没有提到图像生成功能。",
+      "relevant_doc_ids": [],
+      "difficulty": "easy",
+      "tags": ["功能边界", "负面样本"]
+    },
+    {
+      "id": "sample_011",
+      "category": "negative",
+      "question": "知枢平台的价格是多少？",
+      "ground_truth": "文档中没有提供定价信息。知枢平台是开源项目，采用 MIT License。",
+      "relevant_doc_ids": [],
+      "difficulty": "easy",
+      "tags": ["商业", "负面样本"]
+    },
+    {
+      "id": "sample_012",
+      "category": "factual_qa",
+      "question": "知枢平台的分页 API 规范是什么？",
+      "ground_truth": "分页使用 page（从 1 开始）和 page_size（默认 20，最大 100）参数。响应包含 items、total、page、page_size 和 pages 字段。",
+      "relevant_doc_ids": ["doc_adr_003"],
+      "difficulty": "easy",
+      "tags": ["API", "规范"]
+    },
+    {
+      "id": "sample_013",
+      "category": "factual_qa",
+      "question": "知枢平台有哪些用户角色？",
+      "ground_truth": "知枢平台支持 6 种角色：super_admin（超级管理员）、admin（平台管理员）、org_admin（组织管理员）、user（普通用户）、viewer（只读用户）和 guest（访客）。",
+      "relevant_doc_ids": ["doc_permissions_001"],
+      "difficulty": "easy",
+      "tags": ["权限", "角色"]
+    },
+    {
+      "id": "sample_014",
+      "category": "multi_hop",
+      "question": "如何配置 Request-ID 进行请求追踪？",
+      "ground_truth": "知枢平台通过 RequestIDMiddleware 自动生成或传递 X-Request-ID 和 X-Trace-ID 请求头，使用 ContextVar 在请求生命周期内传递，并通过 RequestIDLogFilter 集成到日志中。",
+      "relevant_doc_ids": ["doc_tracing_001", "doc_adr_003"],
+      "difficulty": "hard",
+      "tags": ["可观测性", "追踪"]
+    },
+    {
+      "id": "sample_015",
+      "category": "ambiguous",
+      "question": "知枢好用吗？",
+      "ground_truth": "这是一个主观问题。知枢平台是一个功能完善的 RAG 平台，支持多格式文档、混合检索、多渠道接入等特性，适合企业知识管理和智能问答场景。具体是否好用取决于您的使用场景和需求。",
+      "relevant_doc_ids": ["doc_readme_001"],
+      "difficulty": "hard",
+      "tags": ["主观", "模糊问题"]
+    }
+  ]
+}

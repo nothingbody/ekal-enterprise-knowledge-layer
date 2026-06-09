@@ -1,0 +1,118 @@
+# ═══════════════════════════════════════════
+# RAG Platform — .gitignore
+# ═══════════════════════════════════════════
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.whl
+
+# ── Virtual Environment ──
+venv/
+.venv/
+env/
+
+# ── Environment Files ──
+.env
+!.env.example
+
+# ── IDE ──
+.idea/
+.vscode/
+.cursor/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# ── Node ──
+node_modules/
+frontend/dist/
+admin-frontend/dist/
+
+# ── Server / Central ──
+server/data/
+
+# ── Data & Uploads ──
+backend/data/
+backend/uploads/
+uploads/
+.e2e-data/
+.e2e-data-fresh/
+*.db
+*.sqlite3
+
+# ── Logs ──
+*.log
+logs/
+
+# ── Docker ──
+docker-compose.override.yml
+
+# ── Test / Coverage ──
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# ── Electron build output ──
+desktop/release/
+desktop/dist/
+
+# ── ChromaDB embedded data ──
+chroma/
+
+# ── Sensitive / Temporary Files ──
+translate_config.json
+translate_*_progress.json
+fix_*_progress.json
+force_translate_*_progress.json
+*_cert_temp/
+*.tar.gz
+*.zip
+test_api_node.py
+check_redirect.py
+hs_err_*.log
+desktop/resources/python/
+!desktop/resources/python/.gitkeep
+desktop/resources/ms-playwright/
+
+# ── Cursor Rules ──
+.cursorrules
+
+# ── OpenClaw Translation Scripts ──
+openclaw-skill-scripts/
+
+# ── Skills repository (large, contains third-party credentials) ──
+/skills/
+
+# ── Nginx SSL key extracts ──
+*_nginx_extracted/
+
+# Local agent/tooling settings
+.claude/
+
+# Environment variants
+.env.*
+!.env.example
+!**/.env.example
+
+# TLS certificates and private keys
+server/ssl/*
+!server/ssl/README.md
+!server/ssl/.gitkeep
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx

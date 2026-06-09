@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="知枢 RAG Platform">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="定价 — 知枢 RAG 智能知识平台">
+  <meta property="og:image" content="/og-preview.png">
+  <meta property="og:description" content="知枢 RAG 平台定价方案：免费试用、基础版、专业版、企业版。">
+  <meta property="og:url" content="http://example.com/pricing.html">
+  <link rel="canonical" href="http://example.com/pricing.html">
+  <title>定价 — 知枢 RAG 智能知识平台</title>
+  <meta name="description" content="知枢 RAG 平台定价方案，免费试用 50 次对话，按需升级。">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .pricing-hero {
+      position: relative; padding: 88px 24px 64px; text-align: center; overflow: hidden;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 8px),
+        linear-gradient(135deg, #1a1f4e 0%, #253a80 30%, #5568a8 60%, #8868b0 100%);
+      color: #fff;
+    }
+    .pricing-hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+      background: linear-gradient(to bottom, transparent, #f5f6fa);
+      pointer-events: none;
+    }
+    .pricing-hero .section-tag {
+      background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+    }
+    .pricing-hero h1 {
+      font-size: 36px; font-weight: 700; margin-bottom: 12px;
+      text-shadow: 0 0 40px rgba(255,255,255,0.15);
+    }
+    .pricing-hero p { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; }
+
+    .pricing-body { padding: 60px 0 80px; background: #f5f6fa; }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    }
+
+    .price-card {
+      background: #fff; border-radius: 16px; padding: 32px 24px;
+      border: 1px solid var(--border); text-align: center;
+      transition: all .3s; position: relative; overflow: hidden;
+    }
+    .price-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .price-card.featured {
+      border: 2px solid var(--primary); box-shadow: 0 4px 24px rgba(0,153,255,0.12);
+    }
+    .price-card.featured::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--primary), #00d4aa);
+    }
+
+    .price-popular {
+      position: absolute; top: 12px; right: -32px; transform: rotate(45deg);
+      background: linear-gradient(90deg, var(--primary), #00d4aa);
+      color: #fff; font-size: 11px; font-weight: 600;
+      padding: 4px 40px; letter-spacing: 0.05em;
+    }
+
+    .price-name { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .price-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; min-height: 36px; }
+
+    .price-amount {
+      font-size: 40px; font-weight: 800; color: var(--text); letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .price-amount .currency { font-size: 18px; font-weight: 600; vertical-align: super; }
+    .price-amount .period { font-size: 14px; font-weight: 400; color: var(--text-muted); }
+    .price-note { font-size: 12px; color: var(--text-muted); margin-bottom: 24px; }
+
+    .price-features {
+      text-align: left; list-style: none; margin: 0 0 28px; padding: 0;
+      border-top: 1px solid var(--border); padding-top: 20px;
+    }
+    .price-features li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    .price-features li::before {
+      content: '✓'; color: #22c55e; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+
+    .price-cta {
+      display: block; width: 100%; padding: 12px 0; border-radius: 10px;
+      font-size: 15px; font-weight: 600; text-decoration: none; text-align: center;
+      transition: all .2s; cursor: pointer; border: none;
+    }
+    .price-cta.primary {
+      background: linear-gradient(135deg, var(--primary), #00bfff);
+      color: #fff; box-shadow: 0 4px 12px rgba(0,153,255,0.2);
+    }
+    .price-cta.primary:hover { box-shadow: 0 6px 20px rgba(0,153,255,0.3); transform: translateY(-1px); }
+    .price-cta.outline {
+      background: transparent; border: 1px solid var(--border); color: var(--text-secondary);
+    }
+    .price-cta.outline:hover { border-color: var(--primary); color: var(--primary); }
+
+    .pricing-faq {
+      max-width: 760px; margin: 60px auto 0; padding: 0 24px;
+    }
+    .pricing-faq h2 {
+      text-align: center; font-size: 24px; font-weight: 700; margin-bottom: 24px;
+    }
+    .pf-item {
+      background: #fff; border: 1px solid var(--border); border-radius: 12px;
+      margin-bottom: 12px; overflow: hidden;
+    }
+    .pf-item summary {
+      padding: 16px 20px; font-size: 15px; font-weight: 600;
+      cursor: pointer; color: var(--text); list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .pf-item summary::-webkit-details-marker { display: none; }
+    .pf-item summary::after {
+      content: '+'; font-size: 20px; font-weight: 300; color: var(--text-muted);
+      transition: all .2s; flex-shrink: 0;
+    }
+    .pf-item[open] summary::after { content: '−'; color: var(--primary); }
+    .pf-answer {
+      padding: 0 20px 16px; font-size: 14px; color: var(--text-secondary);
+      line-height: 1.8; border-top: 1px solid var(--border);
+    }
+    .pf-answer p { margin: 0; padding-top: 14px; }
+
+    @media (max-width: 1024px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-hero h1 { font-size: 26px; }
+      .pricing-hero { padding: 72px 24px 48px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav scrolled">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-icon">枢</span><span class="logo-text">知枢</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="features.html">功能</a>
+        <a href="skills.html">技能市场</a>
+        <a href="docs.html">文档</a>
+        <a href="faq.html">FAQ</a>
+        <a href="pricing.html" class="nav-active">定价</a>
+        <a href="changelog.html">更新日志</a>
+        <a href="download.html" class="nav-cta">下载</a>
+      </div>
+      <button class="nav-toggle" aria-label="打开导航菜单" onclick="document.getElementById('navLinks').classList.toggle('show')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <section class="pricing-hero">
+    <div class="section-tag">Pricing</div>
+    <h1>简单透明的定价</h1>
+    <p>软件完全免费，只需为 AI 模型调用付费。支持自带 API Key 零成本使用。</p>
+  </section>
+
+  <section class="pricing-body">
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">免费试用</div>
+        <div class="price-desc">快速体验全部功能</div>
+        <div class="price-amount">免费</div>
+        <div class="price-note">无需信用卡</div>
+        <ul class="price-features">
+          <li>50 次对话额度</li>
+          <li>所有核心功能</li>
+          <li>15+ 文档格式支持</li>
+          <li>混合检索引擎</li>
+          <li>社区技能市场</li>
+        </ul>
+        <a href="download.html" class="price-cta outline">免费下载</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-popular">推荐</div>
+        <div class="price-name">自带 Key</div>
+        <div class="price-desc">使用你自己的 AI 模型 API Key</div>
+        <div class="price-amount">免费</div>
+        <div class="price-note">仅支付 API 提供商费用</div>
+        <ul class="price-features">
+          <li>无限对话额度</li>
+          <li>自由选择 AI 模型</li>
+          <li>支持 OpenAI / Claude / Ollama</li>
+          <li>本地模型完全离线</li>
+          <li>全部高级功能</li>
+          <li>Agent 工具调用</li>
+        </ul>
+        <a href="download.html" class="price-cta primary">立即开始</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">平台托管</div>
+        <div class="price-desc">无需自备 API Key，开箱即用</div>
+        <div class="price-amount"><span class="currency">¥</span>0.01<span class="period"> / 千 Token</span></div>
+        <div class="price-note">按实际用量计费</div>
+        <ul class="price-features">
+          <li>平台预配置模型</li>
+          <li>无需管理 API Key</li>
+          <li>自动负载均衡</li>
+          <li>全部功能解锁</li>
+          <li>用量统计面板</li>
+        </ul>
+        <a href="mailto:support@zhishu.ai" class="price-cta outline">联系开通</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">企业定制</div>
+        <div class="price-desc">大规模团队部署与专属支持</div>
+        <div class="price-amount">定制</div>
+        <div class="price-note">专属方案</div>
+        <ul class="price-features">
+          <li>私有化部署</li>
+          <li>多用户管理</li>
+          <li>工作空间协作</li>
+          <li>SSO 单点登录</li>
+          <li>专属技术支持</li>
+          <li>SLA 服务保障</li>
+        </ul>
+        <a href="mailto:support@zhishu.ai" class="price-cta outline">联系销售</a>
+      </div>
+    </div>
+
+    <!-- Feature Comparison Matrix -->
+    <div class="pricing-compare fade-in" style="margin-bottom: 60px;">
+      <h2 style="text-align: center; margin-bottom: 24px;">方案功能对比</h2>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 600px;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border);">
+              <th style="text-align: left; padding: 12px 16px; font-weight: 600;">功能</th>
+              <th style="text-align: center; padding: 12px 16px;">免费试用</th>
+              <th style="text-align: center; padding: 12px 16px; background: rgba(0,153,255,0.04);">自带 Key</th>
+              <th style="text-align: center; padding: 12px 16px;">平台托管</th>
+              <th style="text-align: center; padding: 12px 16px;">企业定制</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 10px 16px;">知识库数量</td><td style="text-align:center;">3 个</td><td style="text-align:center; background: rgba(0,153,255,0.04);">无限</td><td style="text-align:center;">无限</td><td style="text-align:center;">无限</td></tr>
+            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 10px 16px;">对话次数</td><td style="text-align:center;">50 次</td><td style="text-align:center; background: rgba(0,153,255,0.04);">无限</td><td style="text-align:center;">按量计费</td><td style="text-align:center;">无限</td></tr>
+            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 10px 16px;">文档上传</td><td style="text-align:center;">✅</td><td style="text-align:center; background: rgba(0,153,255,0.04);">✅</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td></tr>
+            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 10px 16px;">多模型支持</td><td style="text-align:center;">✅</td><td style="text-align:center; background: rgba(0,153,255,0.04);">✅</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td></tr>
+            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 10px 16px;">技能市场</td><td style="text-align:center;">✅</td><td style="text-align:center; background: rgba(0,153,255,0.04);">✅</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td></tr>
+            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 10px 16px;">频道接入</td><td style="text-align:center;">—</td><td style="text-align:center; background: rgba(0,153,255,0.04);">✅</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td></tr>
+            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 10px 16px;">多用户/工作空间</td><td style="text-align:center;">—</td><td style="text-align:center; background: rgba(0,153,255,0.04);">—</td><td style="text-align:center;">✅</td><td style="text-align:center;">✅</td></tr>
+            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 10px 16px;">SSO 单点登录</td><td style="text-align:center;">—</td><td style="text-align:center; background: rgba(0,153,255,0.04);">—</td><td style="text-align:center;">—</td><td style="text-align:center;">✅</td></tr>
+            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 10px 16px;">SLA 服务保障</td><td style="text-align:center;">—</td><td style="text-align:center; background: rgba(0,153,255,0.04);">—</td><td style="text-align:center;">—</td><td style="text-align:center;">✅</td></tr>
+            <tr><td style="padding: 10px 16px;">技术支持</td><td style="text-align:center;">社区</td><td style="text-align:center; background: rgba(0,153,255,0.04);">社区</td><td style="text-align:center;">工单</td><td style="text-align:center;">专属</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Token Cost Calculator -->
+    <div class="pricing-calc fade-in" style="max-width: 600px; margin: 0 auto 60px; background: #fff; border-radius: 16px; padding: 32px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+      <h2 style="text-align: center; margin-bottom: 8px;">费用估算器</h2>
+      <p style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">拖动滑块估算平台托管模式的月度费用</p>
+      <div style="margin-bottom: 20px;">
+        <label style="font-size: 14px; font-weight: 500;">每日对话次数</label>
+        <input type="range" id="calc-daily" min="10" max="1000" value="100" step="10" style="width: 100%; margin: 8px 0; accent-color: var(--primary);">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted);"><span>10 次/天</span><span id="calc-daily-val">100 次/天</span><span>1000 次/天</span></div>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="font-size: 14px; font-weight: 500;">平均每次对话 Token 数</label>
+        <input type="range" id="calc-tokens" min="500" max="5000" value="2000" step="100" style="width: 100%; margin: 8px 0; accent-color: var(--primary);">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted);"><span>500</span><span id="calc-tokens-val">2000 tokens</span><span>5000</span></div>
+      </div>
+      <div style="text-align: center; padding: 20px; background: var(--surface); border-radius: 12px;">
+        <div style="font-size: 14px; color: var(--text-secondary);">预估月度费用</div>
+        <div id="calc-result" style="font-size: 36px; font-weight: 700; color: var(--primary); margin: 8px 0;">¥60.00</div>
+        <div style="font-size: 12px; color: var(--text-muted);">基于 ¥0.01 / 千 Token 计算</div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var daily = document.getElementById('calc-daily');
+      var tokens = document.getElementById('calc-tokens');
+      var result = document.getElementById('calc-result');
+      var dailyVal = document.getElementById('calc-daily-val');
+      var tokensVal = document.getElementById('calc-tokens-val');
+      function calc() {
+        var d = parseInt(daily.value);
+        var t = parseInt(tokens.value);
+        var monthly = d * t * 30 * 0.01 / 1000;
+        result.textContent = '¥' + monthly.toFixed(2);
+        dailyVal.textContent = d + ' 次/天';
+        tokensVal.textContent = t + ' tokens';
+      }
+      daily.addEventListener('input', calc);
+      tokens.addEventListener('input', calc);
+      calc();
+    })();
+    </script>
+
+    <div class="pricing-faq">
+      <h2>定价常见问题</h2>
+      <details class="pf-item">
+        <summary>知枢软件本身收费吗？</summary>
+        <div class="pf-answer"><p>不收费。知枢软件完全免费下载和使用。唯一的费用是 AI 模型的 API 调用费用，如果你使用本地模型（如 Ollama），则完全免费。</p></div>
+      </details>
+      <details class="pf-item">
+        <summary>免费试用额度用完后怎么办？</summary>
+        <div class="pf-answer"><p>试用额度用完后，你可以配置自己的 API Key（如 OpenAI、Anthropic 等）继续免费使用，或选择平台托管模式按用量付费。</p></div>
+      </details>
+      <details class="pf-item">
+        <summary>什么是"自带 Key"模式？</summary>
+        <div class="pf-answer"><p>你在知枢中配置自己的 AI 模型 API Key（如 OpenAI API Key），所有 AI 调用费用直接由你的账户与 API 提供商结算，知枢不额外收费。</p></div>
+      </details>
+      <details class="pf-item">
+        <summary>支持哪些 AI 模型提供商？</summary>
+        <div class="pf-answer"><p>支持所有 OpenAI 兼容接口，包括 OpenAI、Anthropic Claude、DeepSeek、通义千问、智谱 GLM 等。也支持通过 Ollama 运行 Llama、Qwen 等本地开源模型。</p></div>
+      </details>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand"><span class="logo-icon">枢</span><div><div class="footer-brand-name">知枢 RAG Platform</div><div class="footer-brand-desc">智能知识平台</div></div></div>
+        <div class="footer-cols">
+          <div class="footer-col"><h4>产品</h4><a href="features.html">核心功能</a><a href="download.html">下载</a><a href="skills.html">技能市场</a><a href="changelog.html">更新日志</a></div>
+          <div class="footer-col"><h4>资源</h4><a href="docs.html">使用文档</a><a href="faq.html">常见问题</a><a href="usecases.html">应用场景</a></div>
+          <div class="footer-col"><h4>联系我们</h4><a href="mailto:support@zhishu.ai">support@zhishu.ai</a></div>
+          <div class="footer-col"><h4>法律</h4><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; <span class="auto-year"></span> 知枢 RAG Platform. All rights reserved.</p></div>
+    </div>
+  </footer>
+<script>document.querySelectorAll(".auto-year").forEach(function(el){el.textContent=new Date().getFullYear()});</script>
+</body>
+</html>

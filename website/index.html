@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="知枢 RAG Platform">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="知枢 — 让企业知识与 AI 深度融合">
+  <meta property="og:image" content="/og-preview.png">
+  <meta property="og:description" content="知枢是一个 RAG 智能知识平台，支持多格式文档、混合检索、Agent 协作，私有部署，数据安全。">
+  <meta property="og:url" content="http://example.com/">
+  <link rel="canonical" href="http://example.com/">
+  <title>知枢 — 让企业知识与 AI 深度融合</title>
+  <meta name="description" content="知枢是一个 RAG 智能知识平台，将分散的文档和数据库知识与 AI 模型深度融合，支持多格式文档、混合检索、Agent 协作，私有部署，数据安全。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">枢</span>
+        <span class="logo-text">知枢</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="features.html">功能</a>
+        <a href="skills.html">技能市场</a>
+        <a href="docs.html">文档</a>
+        <a href="faq.html">FAQ</a>
+        <a href="pricing.html">定价</a>
+        <a href="changelog.html">更新日志</a>
+        <a href="download.html" class="nav-cta">下载</a>
+      </div>
+      <button class="nav-toggle" aria-label="打开导航菜单" onclick="document.getElementById('navLinks').classList.toggle('show')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-center">
+      <h1 class="hero-title">知枢 让企业知识活起来</h1>
+      <a href="/downloads/zhishu-setup-latest.exe" class="hero-download-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Windows 版下载
+      </a>
+      <div class="hero-version" id="hero-version"></div>
+      <a href="download.html" class="hero-more-link">更多版本下载 &gt;</a>
+    </div>
+    <div class="hero-platforms-bar">
+      <a href="/downloads/zhishu-setup-latest.exe" class="hp-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.5l8-1.2V12H3zm0 .5h8v6.7l-8-1.2V12.5zm9-.5V5l9-1.5V12h-9zm0 .5h9v7.5l-9-1.3v-6.7z"/></svg>
+        Windows
+      </a>
+    </div>
+    <div class="hero-footer">
+      <a href="mailto:support@zhishu.ai">联系我们</a>
+      <a href="faq.html">常见问题</a>
+    </div>
+    <div class="hero-copyright">Copyright &copy; <span class="auto-year"></span> 知枢 RAG Platform. All rights reserved.</div>
+  </section>
+
+  <!-- Product Demo Section -->
+  <section class="demo-section fade-in" style="padding: 80px 0 40px; background: var(--bg);">
+    <div class="section-inner" style="max-width: var(--max-w); margin: 0 auto; padding: 0 24px;">
+      <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+        <div class="section-tag">Product Demo</div>
+        <h2>看看知枢如何工作</h2>
+        <p>上传文档 → 智能切分 → 混合检索 → AI 回答，全流程 5 分钟内完成</p>
+      </div>
+      <div style="max-width: 900px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--border); background: #1a1a2e;">
+        <div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #252540;">
+          <span style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f57;"></span>
+          <span style="width: 12px; height: 12px; border-radius: 50%; background: #febc2e;"></span>
+          <span style="width: 12px; height: 12px; border-radius: 50%; background: #28c840;"></span>
+          <span style="flex: 1; text-align: center; font-size: 13px; color: #888;">知枢 — 智能知识平台</span>
+        </div>
+        <div style="padding: 32px; text-align: center; color: #aaa; min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+          <div style="font-size: 48px;">💬</div>
+          <div style="font-size: 18px; color: #fff;">智能对话演示</div>
+          <div style="font-size: 14px; line-height: 2; max-width: 500px;">
+            <div style="text-align: left; background: rgba(0,153,255,0.15); padding: 10px 16px; border-radius: 12px; margin: 8px 0; color: #7ec8ff;">用户：我们的退款政策是什么？</div>
+            <div style="text-align: left; background: rgba(255,255,255,0.08); padding: 10px 16px; border-radius: 12px; margin: 8px 0; color: #ddd;">AI：根据《客户服务手册》第4.2节，退款政策如下：<br>• 7天内无理由退款<br>• 需提供订单号和购买凭证<br>• 处理周期为3-5个工作日<br><span style="color: #0099ff; font-size: 12px;">📎 引用来源：客户服务手册.pdf (相关度 96.2%)</span></div>
+          </div>
+          <a href="/app/" style="display: inline-block; margin-top: 16px; padding: 10px 24px; background: var(--primary); color: #fff; border-radius: 8px; text-decoration: none; font-size: 14px;">进入平台体验 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Core Features</div>
+        <h2>一站式知识管理与 AI 协作</h2>
+        <p>从文档入库到智能问答，覆盖企业知识管理全链路</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon">📄</div>
+          <h3>多格式文档解析</h3>
+          <p>支持 PDF、Word、Excel、PPT、Markdown、HTML、图片等 15+ 格式，自动解析与智能切分</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🔍</div>
+          <h3>混合检索引擎</h3>
+          <p>向量语义检索 + BM25 关键词召回，支持查询改写、Reranker 重排序，精准定位知识</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🤖</div>
+          <h3>智能对话 Agent</h3>
+          <p>流式问答、多轮上下文、用户记忆，支持 Agent 工具调用与 MCP 协议</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🗃️</div>
+          <h3>数据库查询</h3>
+          <p>自然语言转 SQL，支持 MySQL、PostgreSQL、SQLite，AI 自动分析查询结果</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">📡</div>
+          <h3>多渠道接入</h3>
+          <p>企业微信、钉钉、飞书、Telegram、Discord、Slack 一键集成</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🔐</div>
+          <h3>安全可控</h3>
+          <p>私有部署、数据本地化、2FA 验证、完整审计日志，数据安全完全可控</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-section">
+    <div class="section-inner">
+      <div class="trust-strip">
+        <div class="trust-item">
+          <div class="trust-value">15+</div>
+          <div class="trust-label">文档格式支持</div>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <div class="trust-value">6+</div>
+          <div class="trust-label">接入渠道</div>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <div class="trust-value">100%</div>
+          <div class="trust-label">私有部署</div>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <div class="trust-value" id="home-skill-count">9900+</div>
+          <div class="trust-label">社区技能</div>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <div class="trust-value">MIT</div>
+          <div class="trust-label">开源协议</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Section -->
+  <section class="social-proof fade-in" style="padding: 60px 0; background: var(--surface);">
+    <div class="section-inner" style="max-width: var(--max-w); margin: 0 auto; padding: 0 24px;">
+      <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+        <div class="section-tag">User Stories</div>
+        <h2>来自用户的真实反馈</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto;">
+        <div style="background: #fff; border-radius: 12px; padding: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 14px; line-height: 1.8; color: var(--text-secondary); margin-bottom: 16px;">"我们用知枢搭建了内部技术文档问答系统，工程师查找文档的效率提升了 <strong style='color: var(--primary)'>60%</strong>。最重要的是数据完全在我们自己的服务器上。"</div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #0099ff, #7c3aed); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 600;">陈</div>
+            <div><div style="font-size: 13px; font-weight: 600;">陈工</div><div style="font-size: 12px; color: var(--text-muted);">某科技公司 · 技术负责人</div></div>
+          </div>
+        </div>
+        <div style="background: #fff; border-radius: 12px; padding: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 14px; line-height: 1.8; color: var(--text-secondary); margin-bottom: 16px;">"把合同、法规文件导入知枢后，律师助理可以直接用自然语言查询条款。以前翻两小时的文件现在 <strong style='color: var(--primary)'>30 秒</strong>就能找到。"</div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #0099ff); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 600;">王</div>
+            <div><div style="font-size: 13px; font-weight: 600;">王律师</div><div style="font-size: 12px; color: var(--text-muted);">某律师事务所 · 合伙人</div></div>
+          </div>
+        </div>
+        <div style="background: #fff; border-radius: 12px; padding: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 14px; line-height: 1.8; color: var(--text-secondary); margin-bottom: 16px;">"桌面版直接双击安装就能用，不需要任何技术背景。把课件和教材传上去之后学生可以随时提问，相当于 <strong style='color: var(--primary)'>24 小时在线的助教</strong>。"</div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #ef4444); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 600;">李</div>
+            <div><div style="font-size: 13px; font-weight: 600;">李教授</div><div style="font-size: 12px; color: var(--text-muted);">某高校 · 计算机学院</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-card">
+      <h2>立即开始使用知枢</h2>
+      <p>免费下载，开箱即用。数据安全，完全可控。</p>
+      <div class="cta-buttons">
+        <a href="download.html" class="btn btn-primary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          免费下载
+        </a>
+        <a href="docs.html" class="btn btn-ghost-white btn-lg">查看文档 &rarr;</a>
+      </div>
+      <div class="cta-note">Windows 10+ · 完全免费 · 无需注册</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand"><span class="logo-icon">枢</span><div><div class="footer-brand-name">知枢 RAG Platform</div><div class="footer-brand-desc">智能知识平台</div></div></div>
+        <div class="footer-cols">
+          <div class="footer-col"><h4>产品</h4><a href="features.html">核心功能</a><a href="download.html">下载</a><a href="skills.html">技能市场</a><a href="changelog.html">更新日志</a></div>
+          <div class="footer-col"><h4>资源</h4><a href="docs.html">使用文档</a><a href="faq.html">常见问题</a><a href="usecases.html">应用场景</a></div>
+          <div class="footer-col"><h4>联系我们</h4><a href="mailto:support@zhishu.ai">support@zhishu.ai</a></div>
+          <div class="footer-col"><h4>法律</h4><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span class="auto-year"></span> 知枢 RAG Platform. All rights reserved.</p>
+        <div style="display: flex; gap: 16px; align-items: center; margin-top: 12px;">
+          <a href="https://github.com" target="_blank" rel="noopener" title="GitHub" style="color: var(--text-muted); transition: color .2s;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="mailto:support@zhishu.ai" title="邮件" style="color: var(--text-muted); transition: color .2s;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+    });
+    document.querySelectorAll('.auto-year').forEach(function(el) { el.textContent = new Date().getFullYear(); });
+    fetch('/api/v1/releases/public/latest')
+      .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function(d) {
+        var el = document.getElementById('hero-version');
+        if (el && d.version) {
+          var date = (d.extra && d.extra.release_date) || (d.created_at ? d.created_at.split('T')[0] : '');
+          el.textContent = 'v' + d.version + (date ? ' · ' + date : '');
+        }
+      })
+      .catch(function() {
+        var el = document.getElementById('hero-version');
+        if (el) el.textContent = '';
+      });
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+    fetch('/api/v1/skills/marketplace?page=1&page_size=1')
+      .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function(d) {
+        var el = document.getElementById('home-skill-count');
+        if (el && d.total) el.textContent = d.total + '+';
+      })
+      .catch(function() {});
+  </script>
+
+  <!-- Back to top button -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="
+    position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px;
+    border-radius: 50%; border: 1px solid var(--border); background: #fff;
+    box-shadow: var(--shadow-md); cursor: pointer; display: none;
+    align-items: center; justify-content: center; z-index: 999; transition: opacity .3s;
+  " aria-label="返回顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+  <script>
+    var topBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      topBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+    });
+  </script>
+</body>
+</html>

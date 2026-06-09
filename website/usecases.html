@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:site_name" content="知枢 RAG Platform">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="应用场景 — 知枢 RAG 智能知识平台">
+  <meta property="og:image" content="/og-preview.png">
+  <meta property="og:description" content="知枢适用于产品研发、项目管理、客户服务、数据分析等多种知识管理场景。">
+  <meta property="og:url" content="http://example.com/usecases.html">
+  <link rel="canonical" href="http://example.com/usecases.html">
+  <meta name="description" content="知枢 RAG 平台适用于产品研发、项目管理、客户服务、数据分析、教育培训、法律合规等多种知识管理场景。">
+  <title>应用场景 — 知枢 RAG 智能知识平台</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav scrolled">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-icon">枢</span><span class="logo-text">知枢</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="features.html">功能</a>
+        <a href="skills.html">技能市场</a>
+        <a href="docs.html">文档</a>
+        <a href="faq.html">FAQ</a>
+        <a href="pricing.html">定价</a>
+        <a href="changelog.html">更新日志</a>
+        <a href="download.html" class="nav-cta">下载</a>
+      </div>
+      <button class="nav-toggle" aria-label="打开导航菜单" onclick="document.getElementById('navLinks').classList.toggle('show')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div style="padding-top:64px">
+    <section class="usecases" style="padding-top:60px">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-tag">应用场景</div>
+          <h2>不同行业，同一个平台</h2>
+          <p>知枢适用于各种需要知识管理和智能问答的场景</p>
+        </div>
+        <div class="usecase-grid">
+          <div class="usecase-card"><h3>💡 产品研发</h3><p>技术文档智能检索、API 文档问答、代码审查辅助、Bug 知识库。帮助开发团队快速找到需要的技术信息。</p></div>
+          <div class="usecase-card"><h3>📋 项目管理</h3><p>会议纪要自动整理、项目文档即时查询、跨部门知识共享。让项目知识不再因人员变动而流失。</p></div>
+          <div class="usecase-card"><h3>🎓 教育培训</h3><p>课程资料智能问答、新员工入职知识库、考试题库生成。降低培训成本，提升学习效率。</p></div>
+          <div class="usecase-card"><h3>📊 数据分析</h3><p>自然语言查询数据库、报表自动解读、数据趋势问答。让非技术人员也能自助获取数据洞察。</p></div>
+          <div class="usecase-card"><h3>📞 客户服务</h3><p>智能客服机器人、FAQ 自动回复、多渠道统一接入。7×24 小时在线，提升客户满意度。</p></div>
+          <div class="usecase-card"><h3>⚖️ 法律合规</h3><p>法规文件检索、合同条款比对、合规审查辅助。快速定位相关法条，降低合规风险。</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand"><span class="logo-icon">枢</span><div><div class="footer-brand-name">知枢 RAG Platform</div><div class="footer-brand-desc">智能知识平台</div></div></div>
+        <div class="footer-cols">
+          <div class="footer-col"><h4>产品</h4><a href="features.html">核心功能</a><a href="download.html">下载</a><a href="skills.html">技能市场</a><a href="changelog.html">更新日志</a></div>
+          <div class="footer-col"><h4>资源</h4><a href="docs.html">使用文档</a><a href="faq.html">常见问题</a><a href="usecases.html">应用场景</a></div>
+          <div class="footer-col"><h4>联系我们</h4><a href="mailto:support@zhishu.ai">support@zhishu.ai</a></div>
+          <div class="footer-col"><h4>法律</h4><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; <span class="auto-year"></span> 知枢 RAG Platform. All rights reserved.</p></div>
+    </div>
+  </footer>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.usecase-card').forEach(el => { el.classList.add('fade-in'); observer.observe(el); });
+  </script>
+</body>
+</html>
