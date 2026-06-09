@@ -78,13 +78,19 @@ jobs:
 
       - name: Audit Backend dependencies
         run: |
-          pip install -r backend/requirements.txt --quiet
-          pip-audit --desc || true
+          (
+            cd backend
+            pip install -r requirements.txt --quiet
+            pip-audit --desc
+          ) || true
 
       - name: Audit Server dependencies
         run: |
-          pip install -r server/requirements.txt --quiet
-          pip-audit --desc || true
+          (
+            cd server
+            pip install -r requirements.txt --quiet
+            pip-audit --desc
+          ) || true
 
       - uses: actions/setup-node@v4
         with:
